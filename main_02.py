@@ -43,7 +43,12 @@ Base.metadata.create_all(bind=Meu_banco)
 #Salvar no banco de dados.
 os.system("cls || clear")
 
-usuario = Usuario(nome ="Jamile", email="jamile@gmail.com", senha= "123")
+print("Solicitando dados para o usuario")
+inserir_nome = input("Digite seu nome: ")
+inserir_email = input("Digite seu e-mail: ")
+inserir_senha = input("Digite seu nome: ")
+
+usuario = Usuario(nome= inserir_nome, email=inserir_email, senha=inserir_senha)
 session.add(usuario)
 session.commit()
 
@@ -51,12 +56,26 @@ usuario = Usuario(nome ="Maria", email="maria@gmail.com", senha="456")
 session.add(usuario)
 session.commit()
 
+#Delete
+print("\nExcluindo um usuario")
+email_usuario = input("Informe o email do usuario pra ser excluido: ")
+
+usuario = session.query(Usuario).filter_by(email = email_usuario).first
+session.delete(usuario)
+session.commit()
+print("Usuario excluido com sucesso")
+
 #Listando todos os usuários do banco de dados
 print("\nExibindo todos os usuiários do banco de dados.")
 lista_usuarios = session.query(Usuario).all()
 
+#Read
 for usuario in lista_usuarios:
     print(f"{usuario.id} - {usuario.nome} - {usuario.senha}")
 
+#Update 
+print("\nAtualizando dados do usuario")
+usuario = session.query(Usuario).filter_
+
 #Fechando conexão
-session.close()
+sess00ion.close()
